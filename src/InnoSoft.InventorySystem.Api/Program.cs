@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
-
+app.UseExceptionHandler("/error");
 app.UseAuthorization();
 app.UseRouting();
 app.MapControllers();
