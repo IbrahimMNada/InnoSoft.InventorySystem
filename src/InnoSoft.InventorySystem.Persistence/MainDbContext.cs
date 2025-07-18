@@ -70,12 +70,12 @@ namespace InnoSoft.InventorySystem.Persistence
                 var entity = entry.Entity as Entity;
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("CreatedBy").CurrentValue = _deps?.CurrentUser?.Id ?? Guid.Empty;
+                    entry.Property("CreatedBy").CurrentValue = _deps?.CurrentUser?.UserId ?? Guid.Empty;
                     entry.Property("CreatedAt").CurrentValue = DateTime.Now;
                 }
                 else if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("LastUpdatedBy").CurrentValue = _deps?.CurrentUser?.Id ?? Guid.Empty;
+                    entry.Property("LastUpdatedBy").CurrentValue = _deps?.CurrentUser?.UserId ?? Guid.Empty;
                     entry.Property("LastUpdatedAt").CurrentValue = DateTime.Now;
                 }
             });

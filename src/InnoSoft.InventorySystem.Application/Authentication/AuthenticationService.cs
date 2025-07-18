@@ -47,37 +47,5 @@ namespace InnoSoft.InventorySystem.Application.Authentication
             var token = _tokenService.GenerateToken(user);
             return new AuthenticationResult() { UserName = user.Username, Token = token };
         }
-
-
-
-
-        /// <summary>
-        /// This method is to map roles to their respective permissions ,it should come from an external source like a database or configuration file.
-        /// </summary>
-        public static Dictionary<Roles, List<Permissions>> PermissionRoleMapping => new()
-        {
-            {
-                Roles.Admin, new List<Permissions>
-                {
-                    Permissions.CreateProduct,
-                    Permissions.UpdateProduct,
-                    Permissions.DeleteProduct,
-                    Permissions.ViewProduct,
-                    Permissions.AddQuantityToProduct,
-                    Permissions.RemoveQuantityFromProduct,
-                    Permissions.CreateCategory,
-                    Permissions.UpdateCategory,
-                    Permissions.DeleteCategory,
-                    Permissions.ViewCategory
-                }
-            },
-            {
-                Roles.EndUser, new List<Permissions>
-                {
-                    Permissions.ViewProduct,
-                    Permissions.ViewCategory
-                }
-            }
-        };
     }
 }

@@ -123,6 +123,9 @@
   <data name="InvalidCredentials" xml:space="preserve">
     <value>Invalid Credentials</value>
   </data>
+  <data name="Permissiondenied" xml:space="preserve">
+    <value>Permission Denied</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required</value>
   </data>

@@ -1,7 +1,9 @@
 using ConsultationPlatformService.Extensions;
 using InnoSoft.InventorySystem.Api.Core;
+using InnoSoft.InventorySystem.Application;
 using InnoSoft.InventorySystem.Application.Authentication;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Extensions;
 using InnoSoft.InventorySystem.Persistence;
 using InnoSoft.InventorySystem.Persistence.DataSeeds;
@@ -58,10 +60,12 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-
+builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton<TokenService>();
 builder.Services.AddSingleton<AuthenticationService>();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+
 
 var app = builder.Build();
 
@@ -74,13 +78,13 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
-app.UseExceptionHandler("/error");
-app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseRouting();
 app.MapControllers();
+app.UseExceptionHandler("/error");
+
 
 using (var scope = app.Services.CreateScope())
 {

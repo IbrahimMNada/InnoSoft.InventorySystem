@@ -1,4 +1,5 @@
-﻿using InnoSoft.InventorySystem.Application.Common;
+﻿using InnoSoft.InventorySystem.Api.Core.ActionFilters;
+using InnoSoft.InventorySystem.Application.Common;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
 using InnoSoft.InventorySystem.Application.Features.Categories.Services;
 using MediatR;
@@ -9,7 +10,6 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class CategoriesController : Controller
     {
         private readonly IMediator _mediator;
@@ -23,6 +23,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpPost]
         [Route("")]
+        [RequirePermission(Permissions.CreateCategory)]
         public async Task<IActionResult> Create([FromBody] CreateCategoryCommand createCategoryCommand)
         {
             return Ok(await _mediator.Send(createCategoryCommand));
@@ -30,6 +31,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpPut]
         [Route("")]
+        [RequirePermission(Permissions.UpdateCategory)]
         public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand createCategoryCommand)
         {
             return Ok(await _mediator.Send(createCategoryCommand));
@@ -37,6 +39,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpGet]
         [Route("")]
+        [RequirePermission(Permissions.ViewCategory)]
         public async Task<IActionResult> GetList([FromQuery] PagedQuery query)
         {
             return Ok(await _categoryReadService.GetCategories(query));
@@ -44,6 +47,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [RequirePermission(Permissions.DeleteCategory)]
         public async Task<IActionResult> DeleteItem(Guid id)
         {
             return Ok(await _mediator.Send(new DeleteCategoryCommand() { Id = id }));
@@ -51,6 +55,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpGet]
         [Route("administration/{id}")]
+        [RequirePermission(Permissions.ViewCategory)]
         public async Task<IActionResult> GetCategoryById(Guid id)
         {
             return Ok(await _categoryReadService.GetCategoryById(id));
@@ -58,6 +63,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpGet]
         [Route("administration")]
+        [RequirePermission(Permissions.ViewCategory)]
         public async Task<IActionResult> GetAllCategories([FromQuery] PagedQuery query)
         {
             return Ok(await _categoryReadService.GetAllCategories(query));

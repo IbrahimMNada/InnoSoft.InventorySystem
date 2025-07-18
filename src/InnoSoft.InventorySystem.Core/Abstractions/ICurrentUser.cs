@@ -8,6 +8,8 @@ namespace InnoSoft.InventorySystem.Core.Abstractions
 {
     public interface ICurrentUser
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; }
+        public string Username { get; }
+        public Roles Role { get; }
     }
 }

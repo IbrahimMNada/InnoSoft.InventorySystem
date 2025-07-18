@@ -123,6 +123,9 @@
   <data name="InvalidCredentials" xml:space="preserve">
     <value>كلمة مرور او اسم مستخدم خاطىء</value>
   </data>
+  <data name="Permissiondenied" xml:space="preserve">
+    <value>لا يوجد صلاحية</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
