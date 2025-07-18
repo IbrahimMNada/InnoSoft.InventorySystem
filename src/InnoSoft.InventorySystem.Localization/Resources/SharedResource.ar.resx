@@ -120,6 +120,9 @@
   <data name="entityNotFound" xml:space="preserve">
     <value>العنصر غير موجود</value>
   </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>كلمة مرور او اسم مستخدم خاطىء</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
