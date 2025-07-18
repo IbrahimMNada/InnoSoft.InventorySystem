@@ -1,6 +1,7 @@
 ﻿using InnoSoft.InventorySystem.Api.Core.ActionFilters;
 using InnoSoft.InventorySystem.Application.Common;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
 using InnoSoft.InventorySystem.Application.Features.Categories.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,15 +25,15 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         [HttpPost]
         [Route("")]
         [RequirePermission(Permissions.CreateCategory)]
-        public async Task<IActionResult> Create([FromBody] CreateCategoryCommand createCategoryCommand)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryCommand createCategoryCommand)
         {
-            return Ok(await _mediator.Send(createCategoryCommand));
+            return (await _mediator.Send(createCategoryCommand));
         }
 
         [HttpPut]
         [Route("")]
         [RequirePermission(Permissions.UpdateCategory)]
-        public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand createCategoryCommand)
+        public async Task<ActionResult<bool>> Update([FromBody] UpdateCategoryCommand createCategoryCommand)
         {
             return Ok(await _mediator.Send(createCategoryCommand));
         }
@@ -40,7 +41,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         [HttpGet]
         [Route("")]
         [RequirePermission(Permissions.ViewCategory)]
-        public async Task<IActionResult> GetList([FromQuery] PagedQuery query)
+        public async Task<ActionResult<PagedResult<CategoryDto>>> GetList([FromQuery] PagedQuery query)
         {
             return Ok(await _categoryReadService.GetCategories(query));
         }
@@ -48,7 +49,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         [HttpDelete]
         [Route("{id}")]
         [RequirePermission(Permissions.DeleteCategory)]
-        public async Task<IActionResult> DeleteItem(Guid id)
+        public async Task<ActionResult<bool>> DeleteItem(Guid id)
         {
             return Ok(await _mediator.Send(new DeleteCategoryCommand() { Id = id }));
         }
@@ -56,7 +57,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         [HttpGet]
         [Route("administration/{id}")]
         [RequirePermission(Permissions.ViewCategory)]
-        public async Task<IActionResult> GetCategoryById(Guid id)
+        public async Task<ActionResult<CategoryAdministrationDto>> GetCategoryById(Guid id)
         {
             return Ok(await _categoryReadService.GetCategoryById(id));
         }
@@ -64,7 +65,7 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         [HttpGet]
         [Route("administration")]
         [RequirePermission(Permissions.ViewCategory)]
-        public async Task<IActionResult> GetAllCategories([FromQuery] PagedQuery query)
+        public async Task<ActionResult<PagedResult<CategoryAdministrationDto>>> GetAllCategories([FromQuery] PagedQuery query)
         {
             return Ok(await _categoryReadService.GetAllCategories(query));
         }
