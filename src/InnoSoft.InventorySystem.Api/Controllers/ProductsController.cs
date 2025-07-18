@@ -76,5 +76,21 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         {
             return Ok(await _productReadService.GetAllProducts(categoryId, maxQuantity, query));
         }
+
+        [HttpGet]
+        [Route("products-per-category")]
+        [RequirePermission(Permissions.ViewProduct)]
+        public async Task<ActionResult<List<CategoryProductCountDto>>> GetProductCountByCategoryAsync()
+        {
+            return Ok(await _productReadService.GetProductCountByCategoryAsync());
+        }
+
+        [HttpGet]
+        [Route("products-under-limit")]
+        [RequirePermission(Permissions.ViewProduct)]
+        public async Task<ActionResult<List<ProductDto>>> GetProductsUnderLimit()
+        {
+            return Ok(await _productReadService.GetProductsUnderLimit());
+        }
     }
 }

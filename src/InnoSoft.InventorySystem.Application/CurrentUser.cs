@@ -3,6 +3,7 @@ using InnoSoft.InventorySystem.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -20,7 +21,7 @@ namespace InnoSoft.InventorySystem.Application
         public CurrentUser(IHttpContextAccessor httpContextAccessor)
         {
             var user = httpContextAccessor.HttpContext?.User.Identity.IsAuthenticated ?? false;
-             
+
             if (!user || httpContextAccessor == null)
                 return;
 
@@ -31,6 +32,7 @@ namespace InnoSoft.InventorySystem.Application
             {
                 //  throw new Exception($"Invalid role claim: '{roleClaim}'");
             }
+            Role = parsedRole;
             AllowedPermissions = PermissionRoleMapping[parsedRole];
         }
         public static Dictionary<Roles, List<Permissions>> PermissionRoleMapping => new()

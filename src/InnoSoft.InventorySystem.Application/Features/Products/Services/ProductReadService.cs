@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InnoSoft.InventorySystem.Application.Common;
+using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
 using InnoSoft.InventorySystem.Application.Features.Products.Dtos;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Core.Entities.Products;
@@ -79,6 +80,35 @@ namespace InnoSoft.InventorySystem.Application.Features.Products.Services
                 PageNumber = query.PageNumber,
                 PageSize = query.PageSize
             };
+        }
+
+        public async Task<List<ProductDto>> GetProductsUnderLimit()
+        {
+            var baseQuery = BaseQuery();
+            baseQuery = baseQuery.Where(x => x.AlertThresholdQuantity >= x.Quantity);
+
+            var totalCount = await baseQuery.CountAsync();
+            var items = await baseQuery
+                .OrderBy(x => x.Quantity)
+                .ToListAsync();
+
+            return _mapper.Map<List<ProductDto>>(items);
+        }
+
+
+        public async Task<List<CategoryProductCountDto>> GetProductCountByCategoryAsync()
+        {
+            var products = await BaseQuery().ToListAsync();
+            var result = products
+                .GroupBy(p => new { p.CategoryId, p.Category })
+                .Select(g => new CategoryProductCountDto
+                {
+                    CategoryId = g.Key.CategoryId,
+                    Category = _mapper.Map<CategoryDto>(g.Key.Category),
+                    ProductCount = g.Count()
+                })
+                .ToList();
+            return result;
         }
     }
 }
