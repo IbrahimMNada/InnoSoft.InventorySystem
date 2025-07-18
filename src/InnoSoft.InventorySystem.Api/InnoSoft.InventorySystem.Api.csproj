@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InnoSoft.InventorySystem.Api.Core\InnoSoft.InventorySystem.Api.Core.csproj" />
     <ProjectReference Include="..\InnoSoft.InventorySystem.Extensions\InnoSoft.InventorySystem.Extensions.csproj" />
   </ItemGroup>
