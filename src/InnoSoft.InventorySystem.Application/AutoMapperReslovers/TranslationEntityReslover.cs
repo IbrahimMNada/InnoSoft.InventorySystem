@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using InnoSoft.InventorySystem.Application.Localization;
+using InnoSoft.InventorySystem.Core;
+using InnoSoft.InventorySystem.Core.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,7 +12,7 @@ using System.Threading.Tasks;
 namespace InnoSoft.InventorySystem.Application.AutoMapperReslovers
 {
     [DependencyScannerIgnore]
-    public class TranslationEntityReslover : IValueResolver<IWrriteTranslationDto, ITranslation, int>
+    public class TranslationEntityReslover : IValueResolver<IWrriteTranslationDto, ITranslation, Guid>
     {
         private readonly IServiceProvider _serviceProvider;
         public TranslationEntityReslover(IServiceProvider serviceProvider)
@@ -17,7 +20,7 @@ namespace InnoSoft.InventorySystem.Application.AutoMapperReslovers
             _serviceProvider = serviceProvider;
         }
 
-        public int Resolve(IWrriteTranslationDto source, ITranslation destination, int destMember, ResolutionContext context)
+        public Guid Resolve(IWrriteTranslationDto source, ITranslation destination, Guid destMember, ResolutionContext context)
         {
             using (var scope = _serviceProvider.CreateScope())
             {
@@ -26,5 +29,6 @@ namespace InnoSoft.InventorySystem.Application.AutoMapperReslovers
                 return lang.Id;
             }
         }
+
     }
 }

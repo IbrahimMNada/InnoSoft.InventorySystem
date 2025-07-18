@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InnoSoft.InventorySystem.Application.Localization;
 using InnoSoft.InventorySystem.Core;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
