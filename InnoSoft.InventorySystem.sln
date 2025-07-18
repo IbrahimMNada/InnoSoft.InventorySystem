@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoSoft.InventorySystem.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoSoft.InventorySystem.Localization", "src\InnoSoft.InventorySystem.Localization\InnoSoft.InventorySystem.Localization.csproj", "{82A324AE-2E3A-4DF7-A5F3-5A70AEC7B18D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{92DD1A0F-4B71-4AE8-81A3-58CB54B8788D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoSoft.InventorySystem.Tests", "src\tests\InnoSoft.InventorySystem.Tests\InnoSoft.InventorySystem.Tests.csproj", "{84511E5A-E859-4A09-ABCD-421CFD17EE53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{82A324AE-2E3A-4DF7-A5F3-5A70AEC7B18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A324AE-2E3A-4DF7-A5F3-5A70AEC7B18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A324AE-2E3A-4DF7-A5F3-5A70AEC7B18D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84511E5A-E859-4A09-ABCD-421CFD17EE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84511E5A-E859-4A09-ABCD-421CFD17EE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84511E5A-E859-4A09-ABCD-421CFD17EE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84511E5A-E859-4A09-ABCD-421CFD17EE53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,8 @@ Global
 		{3783E1AF-AEE2-404F-B29E-F2368875B1D7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{2FA32B9E-A508-4D1C-9015-1E2403149619} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{82A324AE-2E3A-4DF7-A5F3-5A70AEC7B18D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{92DD1A0F-4B71-4AE8-81A3-58CB54B8788D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{84511E5A-E859-4A09-ABCD-421CFD17EE53} = {92DD1A0F-4B71-4AE8-81A3-58CB54B8788D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54651605-C2CA-491D-86BC-0C56F784CB1D}
