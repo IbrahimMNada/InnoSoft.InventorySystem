@@ -14,7 +14,7 @@ namespace InnoSoft.InventorySystem.Persistence.EntitiesConfiguration.CategoriesC
     {
         public override void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasOne<Category>().WithMany().HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.NoAction);
             base.Configure(builder);
         }
     }

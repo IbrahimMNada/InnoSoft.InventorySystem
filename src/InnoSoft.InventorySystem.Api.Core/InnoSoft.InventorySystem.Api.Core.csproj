@@ -9,6 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
+    <PackageReference Include="Scrutor" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Application\InnoSoft.InventorySystem.Application.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Extensions\InnoSoft.InventorySystem.Extensions.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Infrastructure\InnoSoft.InventorySystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Localization\InnoSoft.InventorySystem.Localization.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Persistence\InnoSoft.InventorySystem.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

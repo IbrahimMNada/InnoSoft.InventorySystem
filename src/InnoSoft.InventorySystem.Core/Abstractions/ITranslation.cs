@@ -8,7 +8,7 @@ namespace InnoSoft.InventorySystem.Core.Abstractions
 {
     public interface ITranslation
     {
-        int TranslationRootId { get; set; }
-        int LanguageId { get; set; }
+        Guid TranslationRootId { get; set; }
+        Guid LanguageId { get; set; }
     }
 }

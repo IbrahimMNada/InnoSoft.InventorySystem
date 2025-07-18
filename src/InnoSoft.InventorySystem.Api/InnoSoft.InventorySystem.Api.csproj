@@ -10,4 +10,13 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Api.Core\InnoSoft.InventorySystem.Api.Core.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Extensions\InnoSoft.InventorySystem.Extensions.csproj" />
+  </ItemGroup>
+
 </Project>
