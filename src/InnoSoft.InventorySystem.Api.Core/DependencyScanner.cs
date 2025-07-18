@@ -1,7 +1,11 @@
 using AutoMapper;
+using ConsultationPlatformService.Application.Localization;
 using FluentValidation;
 using InnoSoft.InventorySystem.Application;
+using InnoSoft.InventorySystem.Application.Localization;
+using InnoSoft.InventorySystem.Core;
 using InnoSoft.InventorySystem.Core.Abstractions;
+using InnoSoft.InventorySystem.Infrastructure;
 using InnoSoft.InventorySystem.Infrastructure.Commands;
 using InnoSoft.InventorySystem.Persistence;
 using Microsoft.AspNetCore.Authorization;
@@ -28,8 +32,7 @@ namespace ConsultationPlatformService.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddScoped<ICorrelationIdAccessor, CorrelationIdAccessor>();
-
-            //services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddScoped<DbContextDependencies>();
             services.AddHttpContextAccessor();
@@ -56,25 +59,22 @@ namespace ConsultationPlatformService.Extensions
                 type.IsAssignableTo(typeof(BackgroundService)) ||
                 type.IsAssignableTo(typeof(Attribute)) ||
                 type.IsAssignableTo(typeof(IAuthorizationRequirement)) ||
-                type.IsAssignableTo(typeof(Profile));// ||
+                type.IsAssignableTo(typeof(Profile)) ||
+                type.IsAssignableTo(typeof(ILanguageService)) ||
+                type.IsAssignableTo(typeof(IUnitOfWork)) ||
+                type.IsAssignableTo(typeof(ICommandHandler<,>)) ||
+                type.GetCustomAttribute<DependencyScannerIgnoreAttribute>() != null;
 
-            //type.IsAssignableTo(typeof(ILanguageService)) ||
-            //type.IsAssignableTo(typeof(IUnitOfWork)) ||
             //type.IsAssignableTo(typeof(IRefitClient)) ||
             //type.Namespace == typeof(CorrelationIdMiddleware).Namespace ||
             //type.Namespace == typeof(UserValidationMiddelware).Namespace ||
-
             //type == typeof(QueryExecuterOptions) ||
-
             //type.IsRecordType() ||
-
-
             //type.IsAssignableTo(typeof(SecurityEnumsProvider)) ||
             //type.IsAssignableTo(typeof(WorkflowEnumsProvider)) ||
-
             //type.IsAssignableTo(typeof(ICommandHandler<,>)) ||
             //type.Assembly == typeof(ObjectUtils).Assembly ||
-            //type.GetCustomAttribute<DependencyScannerIgnoreAttribute>() != null;
+
         }
 
         private static IEnumerable<Assembly> MakeSureAllAssembliesAreLoaded()
