@@ -16,8 +16,7 @@ namespace InnoSoft.InventorySystem.Application.Features.Categories.Validators
         {
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage(localizer["Required"]);
             RuleFor(x => x.Language).NotNull().NotEmpty().WithMessage(localizer["Required"]);
-            RuleFor(x => x.Description).NotNull().NotEmpty().WithMessage(localizer["Required"]);
-
+         //   RuleFor(x => x.Description).NotNull().NotEmpty().WithMessage(localizer["Required"]);
         }
     }
 }

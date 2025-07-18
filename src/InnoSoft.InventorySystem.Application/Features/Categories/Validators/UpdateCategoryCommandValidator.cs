@@ -15,6 +15,7 @@ namespace InnoSoft.InventorySystem.Application.Features.Categories.Validators
         public UpdateCategoryCommandValidator(IStringLocalizer<SharedResource> localizer)
         {
             RuleFor(x => x.Id).NotNull().NotEmpty().WithMessage(localizer["Required"]);
+            RuleFor(x => x.Translations).NotEmpty();
             RuleForEach(x => x.Translations).SetValidator(new CategoryTranslationDtoValidator(localizer));
         }
     }
