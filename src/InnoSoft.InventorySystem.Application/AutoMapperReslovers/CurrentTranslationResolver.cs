@@ -14,7 +14,7 @@ namespace InnoSoft.InventorySystem.Application.AutoMapperReslovers
 {
     [DependencyScannerIgnore]
     public class CurrentTranslationResolver<T, DistType> : IMemberValueResolver<ITranslationRootOf<T>, object, string, DistType>
-        where T : Entity, ITranslation
+        where T : ITranslation
         where DistType : class
     {
         private readonly ILanguageService _languageService;

@@ -1,4 +1,5 @@
 ﻿using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+using InnoSoft.InventorySystem.Application.Features.Categories.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,12 @@ namespace InnoSoft.InventorySystem.Api.Controllers
     public class CategoriesController : Controller
     {
         private readonly IMediator _mediator;
-        public CategoriesController(IMediator mediator)
+        private readonly ICategoryReadService _categoryReadService;
+
+        public CategoriesController(IMediator mediator, ICategoryReadService categoryReadService)
         {
             _mediator = mediator;
+            _categoryReadService = categoryReadService;
         }
 
         [HttpPost]
@@ -22,11 +26,26 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         {
             return Ok(await _mediator.Send(createCategoryCommand));
         }
-        //[HttpPut]
-        //[Route("")]
-        //public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand updateCategoryCommand)
-        //{
-        //    return Ok(await _mediator.Send(updateCategoryCommand));
-        //}
+
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetList()
+        {
+            return Ok(await _categoryReadService.GetCategories());
+        }
+
+        [HttpGet]
+        [Route("administration/{id}")]
+        public async Task<IActionResult> GetCategoryById(Guid id)
+        {
+            return Ok(await _categoryReadService.GetCategoryById(id));
+        }
+
+        [HttpGet]
+        [Route("administration")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            return Ok(await _categoryReadService.GetAllCategories());
+        }
     }
 }

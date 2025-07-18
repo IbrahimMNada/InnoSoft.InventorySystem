@@ -16,10 +16,10 @@ namespace ConsultationPlatformService.Extensions
 {
     public static class DependencyScanner
     {
-        public const string RootNamespace = "InnoSoft.InventorySystem.";
+        public const string RootNamespace = "InnoSoft.";
 
         private static IEnumerable<Assembly> _projectAssembles = null;
-        public static IEnumerable<Assembly> GetProjectAssemblies(string rootNamespace = "InnoSoft.InventorySystem.")
+        public static IEnumerable<Assembly> GetProjectAssemblies(string rootNamespace = "InnoSoft.")
         {
             if (_projectAssembles == null)
                 _projectAssembles = AppDomain.CurrentDomain.GetAssemblies().Where(x => !x.IsDynamic && x.FullName.Contains(rootNamespace)).ToList();

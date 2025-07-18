@@ -29,7 +29,7 @@ namespace ConsultationPlatformService.Application.Localization
 
         public Language GetCurrentLanguage()
         {
-            var requestLanguage = _httpContextAccessor.HttpContext.Request.Headers["accept-language"].FirstOrDefault();
+            var requestLanguage = _httpContextAccessor.HttpContext.Request.Headers["x-accept-language"].FirstOrDefault();
             return _languageRepository.GetAll().ToList().FirstOrDefault(x => x.Abbreviation == requestLanguage) ??
                    _languageRepository.GetAll().ToList().FirstOrDefault(x => x.Abbreviation == "ar");
         }

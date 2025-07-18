@@ -11,8 +11,4 @@
     <ProjectReference Include="..\InnoSoft.InventorySystem.Localization\InnoSoft.InventorySystem.Localization.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Categories\Services\" />
-  </ItemGroup>
-
 </Project>
