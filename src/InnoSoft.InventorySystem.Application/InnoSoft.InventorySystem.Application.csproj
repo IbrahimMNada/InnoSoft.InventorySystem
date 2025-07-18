@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InnoSoft.InventorySystem.Infrastructure\InnoSoft.InventorySystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Localization\InnoSoft.InventorySystem.Localization.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,10 +5,13 @@ using FluentValidation.AspNetCore;
 using InnoSoft.InventorySystem.Api.Core.SwaggerOperationFilters;
 using InnoSoft.InventorySystem.Application.Features.Categories;
 using InnoSoft.InventorySystem.Application.Features.Categories.Validators;
+using InnoSoft.InventorySystem.Application.Localization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
+using System.Globalization;
 
 namespace InnoSoft.InventorySystem.Api.Core
 {
@@ -54,9 +57,6 @@ namespace InnoSoft.InventorySystem.Api.Core
             return services;
         }
 
-
-
-
         public static IServiceCollection ConfigureSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -92,6 +92,33 @@ namespace InnoSoft.InventorySystem.Api.Core
                         new List<string>()
                     }
                 });
+            });
+            return services;
+        }
+
+        public static IServiceCollection AddAppLocalization(this IServiceCollection services)
+        {
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                new CultureInfo("en"),
+                new CultureInfo("ar")
+            };
+
+                options.DefaultRequestCulture = new RequestCulture("ar");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                // Accept language from header or query
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                new QueryStringRequestCultureProvider(),
+                new AppAcceptLanguageHeaderRequestCultureProvider()
+                };
+
             });
             return services;
         }
