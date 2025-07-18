@@ -12,13 +12,17 @@ namespace InnoSoft.InventorySystem.Application.Features.Categories
         public CategoriesMappingProfile()
         {
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
+            CreateMap<UpdateCategoryCommand,Category>().ReverseMap();
             CreateMap<Category, CategoryAdministrationDto>();
 
             CreateMap<CategoryTranslation, CategoryTranslationDto>()
                 .ForMember(x => x.Language, otp => otp.MapFrom<TranslationDtoReslover>());
 
+
             CreateMap<CategoryTranslationDto, CategoryTranslation>()
                             .ForMember(x => x.LanguageId, otp => otp.MapFrom<TranslationEntityReslover>());
+
+
 
             CreateMap<Category, CategoryDto>()
                    .ForMember(x => x.Name, otp =>

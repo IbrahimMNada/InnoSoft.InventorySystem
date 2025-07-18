@@ -12,25 +12,25 @@ using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Features.Categories.Handlers
 {
-    public class UpdateCategoryCommandHandler : ICommandHandler<UpdateCategoryCommand, bool>
+    internal class DeleteCategoryCommandHandler : ICommandHandler<DeleteCategoryCommand, bool>
     {
         private readonly IRepository<Category> _repository;
         private readonly IMapper _mapper;
 
-        public UpdateCategoryCommandHandler(IRepository<Category> repository, IMapper mapper)
+        public DeleteCategoryCommandHandler(IRepository<Category> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
             var entity = await _repository.GetById(request.Id);
             if (entity == null)
             {
                 throw new EntityNotFoundException(typeof(Category), request.Id);
             }
-            _mapper.Map(request, entity);
+            await _repository.Delete(request.Id);
             await _repository.UnitOfWork.SaveChangesAsync(cancellationToken);
             return true;
         }

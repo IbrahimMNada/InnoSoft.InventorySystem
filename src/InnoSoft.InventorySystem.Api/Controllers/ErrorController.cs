@@ -18,10 +18,11 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         private readonly ProblemDetailsFactory _problemDetailsFactory;
         private readonly IStringLocalizer<SharedResource> _stringLocalizer;
 
-        public ErrorController(ILogger logger, ProblemDetailsFactory problemDetailsFactory)
+        public ErrorController(ILogger logger, ProblemDetailsFactory problemDetailsFactory, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _logger = logger;
             _problemDetailsFactory = problemDetailsFactory;
+            _stringLocalizer = stringLocalizer;
         }
 
         [Route("")]

@@ -27,11 +27,25 @@ namespace InnoSoft.InventorySystem.Api.Controllers
             return Ok(await _mediator.Send(createCategoryCommand));
         }
 
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand createCategoryCommand)
+        {
+            return Ok(await _mediator.Send(createCategoryCommand));
+        }
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetList()
         {
             return Ok(await _categoryReadService.GetCategories());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteItem(Guid id)
+        {
+            return Ok(await _mediator.Send(new DeleteCategoryCommand() { Id = id }));
         }
 
         [HttpGet]

@@ -1,5 +1,6 @@
 using ConsultationPlatformService.Extensions;
 using InnoSoft.InventorySystem.Api.Core;
+using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
 using InnoSoft.InventorySystem.Extensions;
 using InnoSoft.InventorySystem.Persistence;
 using InnoSoft.InventorySystem.Persistence.DataSeeds;
@@ -23,7 +24,7 @@ builder.Services.ConfigureValidators();
 builder.Services.ConfigureAutoMapper();
 builder.Services.AddAppLocalization();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
 
 builder.Services.AddScoped<DbContextDependencies>();
 builder.Services.AddDbContext<DbContext, MainDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Application")));
