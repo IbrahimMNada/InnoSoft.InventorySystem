@@ -20,6 +20,7 @@ namespace InnoSoft.InventorySystem.Application.Features.Products
         {
             CreateMap<Product, CreateProductCommand>().ReverseMap();
             CreateMap<Product, UpdateProductCommand>().ReverseMap();
+            CreateMap<Product, ProductAdministrationDto>().ReverseMap();
 
             CreateMap<ProductTranslation, ProductTranslationDto>()
                 .ForMember(x => x.Language, otp => otp.MapFrom<TranslationDtoReslover>());

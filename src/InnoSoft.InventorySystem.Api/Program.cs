@@ -95,7 +95,7 @@ using (var scope = app.Services.CreateScope())
 
 await LanguageSeeder.SeedAsync(app.Services);
 await CategorySeeder.SeedAsync(app.Services);
-
+await ProductSeeder.SeedAsync(app.Services);
 app.Run();
 
 

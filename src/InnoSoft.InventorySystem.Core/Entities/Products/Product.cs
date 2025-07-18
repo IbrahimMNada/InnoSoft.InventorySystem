@@ -14,6 +14,6 @@ namespace InnoSoft.InventorySystem.Core.Entities.Products
         public double Quantity { get; set; }
         public double AlertThresholdQuantity { get; set; }
         public Guid CategoryId { get; set; }
-        public required Category Category { get; set; }
+        public Category Category { get; set; }
     }
 }
