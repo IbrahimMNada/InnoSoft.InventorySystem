@@ -1,0 +1,6 @@
+@InnoSoft.InventorySystem.Api_HostAddress = http://localhost:5284
+
+GET {{InnoSoft.InventorySystem.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

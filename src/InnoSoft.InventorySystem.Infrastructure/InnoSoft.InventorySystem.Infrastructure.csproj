@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\InnoSoft.InventorySystem.Extensions\InnoSoft.InventorySystem.Extensions.csproj" />
-    <ProjectReference Include="..\src\InnoSoft.InventorySystem.Persistence\InnoSoft.InventorySystem.Persistence.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Extensions\InnoSoft.InventorySystem.Extensions.csproj" />
+    <ProjectReference Include="..\InnoSoft.InventorySystem.Persistence\InnoSoft.InventorySystem.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
