@@ -1,4 +1,5 @@
-﻿using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+﻿using InnoSoft.InventorySystem.Application.Common;
+using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
 using InnoSoft.InventorySystem.Application.Features.Categories.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -36,9 +37,9 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetList()
+        public async Task<IActionResult> GetList([FromQuery] PagedQuery query)
         {
-            return Ok(await _categoryReadService.GetCategories());
+            return Ok(await _categoryReadService.GetCategories(query));
         }
 
         [HttpDelete]
@@ -57,9 +58,9 @@ namespace InnoSoft.InventorySystem.Api.Controllers
 
         [HttpGet]
         [Route("administration")]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllCategories([FromQuery] PagedQuery query)
         {
-            return Ok(await _categoryReadService.GetAllCategories());
+            return Ok(await _categoryReadService.GetAllCategories(query));
         }
     }
 }

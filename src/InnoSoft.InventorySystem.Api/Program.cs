@@ -25,7 +25,6 @@ builder.Services.ConfigureAutoMapper();
 builder.Services.AddAppLocalization();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
-
 builder.Services.AddScoped<DbContextDependencies>();
 builder.Services.AddDbContext<DbContext, MainDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Application")));
 
@@ -45,7 +44,15 @@ app.UseAuthorization();
 app.UseRouting();
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<MainDbContext>();
+    dbContext.Database.Migrate();
+}
+
+
 await LanguageSeeder.SeedAsync(app.Services);
+await CategorySeeder.SeedAsync(app.Services);
 
 app.Run();
 

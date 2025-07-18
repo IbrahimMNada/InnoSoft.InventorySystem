@@ -1,14 +1,14 @@
-﻿using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
+﻿using InnoSoft.InventorySystem.Application.Common;
+using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Features.Categories.Services
 {
     public interface ICategoryReadService
     {
-        Task<IEnumerable<CategoryDto>> GetCategories();
+        Task<PagedResult<CategoryDto>> GetCategories(PagedQuery query);
         Task<CategoryAdministrationDto> GetCategoryById(Guid id);
-        Task<IEnumerable<CategoryAdministrationDto>> GetAllCategories();
+        Task<PagedResult<CategoryAdministrationDto>> GetAllCategories(PagedQuery query);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InnoSoft.InventorySystem.Application.Common;
 using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Core.Entities.Categories;
@@ -21,31 +22,52 @@ namespace InnoSoft.InventorySystem.Application.Features.Categories.Services
             _mapper = mapper;
         }
 
+        private IQueryable<Category> BaseQuery()
+        {
+            return _repository.Queryable()
+                .Include(x => x.Translations)
+                .AsNoTracking();
+        }
+
         public async Task<CategoryAdministrationDto> GetCategoryById(Guid id)
         {
-            var category = await _repository.Queryable()
-                .Include(x => x.Translations)
-                .AsNoTracking()
+            var category = await BaseQuery()
                 .FirstOrDefaultAsync(x => x.Id == id);
             return _mapper.Map<CategoryAdministrationDto>(category);
         }
 
-        public async Task<IEnumerable<CategoryAdministrationDto>> GetAllCategories()
+        public async Task<PagedResult<CategoryAdministrationDto>> GetAllCategories(PagedQuery query)
         {
-            var categories = await _repository.Queryable()
-                .Include(x => x.Translations)
-                .AsNoTracking()
+            var baseQuery = BaseQuery();
+            var totalCount = await baseQuery.CountAsync();
+            var items = await baseQuery
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .ToListAsync();
-            return _mapper.Map<IEnumerable<CategoryAdministrationDto>>(categories);
+            return new PagedResult<CategoryAdministrationDto>
+            {
+                Items = _mapper.Map<IEnumerable<CategoryAdministrationDto>>(items),
+                TotalCount = totalCount,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize
+            };
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetCategories()
+        public async Task<PagedResult<CategoryDto>> GetCategories(PagedQuery query)
         {
-            var categories = await _repository.Queryable()
-                .Include(x => x.Translations)
-                .AsNoTracking()
+            var baseQuery = BaseQuery();
+            var totalCount = await baseQuery.CountAsync();
+            var items = await baseQuery
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .ToListAsync();
-            return _mapper.Map<IEnumerable<CategoryDto>>(categories);
+            return new PagedResult<CategoryDto>
+            {
+                Items = _mapper.Map<IEnumerable<CategoryDto>>(items),
+                TotalCount = totalCount,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize
+            };
         }
     }
 }
