@@ -9,6 +9,8 @@ namespace InnoSoft.InventorySystem.Core.Abstractions
     public interface IRepository<T> where T : Entity
     {
         IUnitOfWork UnitOfWork { get; }
+        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetById(Guid id);
         Task Delete(Guid id);
         Task<T> Add(T entity);

@@ -21,6 +21,15 @@ namespace InnoSoft.InventorySystem.Persistence
         {
             return AsQueryable().SingleOrDefaultAsync(x => x.Id == id);
         }
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await AsQueryable().ToListAsync();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return AsQueryable().ToList();
+        }
 
         public async Task<T> Add(T entity)
         {
