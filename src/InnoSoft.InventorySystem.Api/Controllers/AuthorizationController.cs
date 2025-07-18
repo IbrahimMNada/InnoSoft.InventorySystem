@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace InnoSoft.InventorySystem.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly AuthenticationService _authenticationService;

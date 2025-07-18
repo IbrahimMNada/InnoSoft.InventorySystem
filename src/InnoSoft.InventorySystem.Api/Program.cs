@@ -66,6 +66,21 @@ builder.Services.AddSingleton<TokenService>();
 builder.Services.AddSingleton<AuthenticationService>();
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
+var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]
+    ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    ?? Array.Empty<string>();
+
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.WithOrigins(allowedOrigins)
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials(); // if needed
+    });
+});
 
 var app = builder.Build();
 
@@ -78,10 +93,10 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseRouting();
+app.UseCors("CorsPolicy");
 app.MapControllers();
 app.UseExceptionHandler("/error");
 
