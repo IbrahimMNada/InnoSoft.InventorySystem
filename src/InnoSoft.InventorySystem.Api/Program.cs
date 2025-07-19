@@ -3,6 +3,7 @@ using InnoSoft.InventorySystem.Api.Core;
 using InnoSoft.InventorySystem.Application;
 using InnoSoft.InventorySystem.Application.Authentication;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+using InnoSoft.InventorySystem.Application.SignalRHubs;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Extensions;
 using InnoSoft.InventorySystem.Localization;
@@ -84,6 +85,22 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
         ClockSkew = TimeSpan.Zero,
     };
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+
+            if (!string.IsNullOrEmpty(accessToken) &&
+                path.StartsWithSegments("/ProductsHub"))
+            {
+                context.Token = accessToken;
+            }
+
+            return Task.CompletedTask;
+        }
+    };
 });
 builder.Services.AddAuthorization();
 
@@ -95,6 +112,7 @@ var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]
     ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
     ?? Array.Empty<string>();
 
+builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
@@ -119,14 +137,14 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler("/error");
 app.UseRateLimiter();
 //app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseCors("CorsPolicy");
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseRouting();
-app.UseCors("CorsPolicy");
-app.MapControllers();
 
+app.MapControllers();
+app.MapHub<ProductsHub>("/ProductsHub");
 
 using (var scope = app.Services.CreateScope())
 {

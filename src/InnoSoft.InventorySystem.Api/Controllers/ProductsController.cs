@@ -94,3 +94,9 @@ namespace InnoSoft.InventorySystem.Api.Controllers
         }
     }
 }
+
+
+//Todo : 
+
+// signalR to update product quantity in real time
+//cron job to check product limit and notify admin
