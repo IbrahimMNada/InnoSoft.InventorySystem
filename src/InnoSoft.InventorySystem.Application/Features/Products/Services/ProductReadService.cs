@@ -106,7 +106,7 @@ namespace InnoSoft.InventorySystem.Application.Features.Products.Services
                     CategoryId = g.Key.CategoryId,
                     Category = _mapper.Map<CategoryDto>(g.Key.Category),
                     ProductCount = g.Count()
-                })
+                }).DistinctBy(x => x.CategoryId)
                 .ToList();
             return result;
         }

@@ -132,8 +132,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Id = Guid.Parse("0B839744-08E7-494A-BEE4-A9EA5D952E93"),
                     IsDeleted = false,
                     PricePerPiece = 799.99m,
-                    Quantity = 50,
-                    AlertThresholdQuantity = 5,
+                    Quantity = 66,
+                    AlertThresholdQuantity = 100,
                     CategoryId = Guid.Parse("77921FEC-78DC-47C0-BD53-08DDC5E14BD7"),
                     Translations = new List<ProductTranslation>()
     {
@@ -214,7 +214,7 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     IsDeleted = false,
                     PricePerPiece = 99.99m,
                     Quantity = 50,
-                    AlertThresholdQuantity = 5,
+                    AlertThresholdQuantity = 60,
                     CategoryId = Guid.Parse("05189D9B-F2C5-43E9-BD54-08DDC5E14BD7"),
                     Translations = new List<ProductTranslation>()
     {
