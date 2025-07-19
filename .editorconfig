@@ -1,0 +1,35 @@
+# Top-most EditorConfig file
+root = true
+
+# Applies to all C# files
+[*.cs]
+
+# Indentation settings
+indent_style = space
+indent_size = 4
+
+# New line at end of file
+insert_final_newline = true
+
+# Use UTF-8 encoding
+charset = utf-8
+
+# Style rules
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_prefer_inferred_tuple_names = true:warning
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
+dotnet_style_explicit_tuple_names = true:warning
+
+# Naming rules (optional)
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case
+
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.required_modifiers = readonly
+
+dotnet_naming_style.camel_case.capitalization = camel_case
+dotnet_naming_style.camel_case.required_prefix = _
+dotnet_naming_style.camel_case.required_suffix = 

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Features.Categories.Handlers
 {
-    internal class DeleteCategoryCommandHandler : ICommandHandler<DeleteCategoryCommand, bool>
+    public class DeleteCategoryCommandHandler : ICommandHandler<DeleteCategoryCommand, bool>
     {
         private readonly IRepository<Category> _repository;
         private readonly IMapper _mapper;
