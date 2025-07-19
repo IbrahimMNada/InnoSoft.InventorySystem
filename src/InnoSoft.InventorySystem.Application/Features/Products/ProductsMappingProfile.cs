@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
 using InnoSoft.InventorySystem.Application.AutoMapperReslovers;
-using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
-using InnoSoft.InventorySystem.Application.Features.Categories.Dtos;
 using InnoSoft.InventorySystem.Application.Features.Products.Commands;
 using InnoSoft.InventorySystem.Application.Features.Products.Dtos;
 using InnoSoft.InventorySystem.Core.Entities.Categories;
 using InnoSoft.InventorySystem.Core.Entities.Products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Features.Products
 {
@@ -18,24 +11,24 @@ namespace InnoSoft.InventorySystem.Application.Features.Products
     {
         public ProductsMappingProfile()
         {
-            CreateMap<Product, CreateProductCommand>().ReverseMap();
-            CreateMap<Product, UpdateProductCommand>().ReverseMap();
+            _ = CreateMap<Product, CreateProductCommand>().ReverseMap();
+            _ = CreateMap<Product, UpdateProductCommand>().ReverseMap();
 
-            CreateMap<Product, ProductAdministrationDto>()
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category == null ? new Category() { Translations = new List<CategoryTranslation>() } : src.Category));
+            _ = CreateMap<Product, ProductAdministrationDto>()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category ?? new Category() { Translations = new List<CategoryTranslation>() }));
 
-            CreateMap<ProductAdministrationDto, Product>();
-            
-            CreateMap<ProductNotificationDto, Product>();
-            CreateMap<Product, ProductNotificationDto>();
+            _ = CreateMap<ProductAdministrationDto, Product>();
 
-            CreateMap<ProductTranslation, ProductTranslationDto>()
+            _ = CreateMap<ProductNotificationDto, Product>();
+            _ = CreateMap<Product, ProductNotificationDto>();
+
+            _ = CreateMap<ProductTranslation, ProductTranslationDto>()
                 .ForMember(x => x.Language, otp => otp.MapFrom<TranslationDtoReslover>());
 
-            CreateMap<ProductTranslationDto, ProductTranslation>()
+            _ = CreateMap<ProductTranslationDto, ProductTranslation>()
                  .ForMember(x => x.LanguageId, otp => otp.MapFrom<TranslationEntityReslover>());
 
-            CreateMap<Product, ProductDto>()
+            _ = CreateMap<Product, ProductDto>()
                    .ForMember(x => x.Name, otp =>
                    otp.MapFrom<CurrentTranslationResolver<ProductTranslation, string>, string>(p => nameof(ProductTranslation.Name)))
                    .ForMember(x => x.Description, otp =>

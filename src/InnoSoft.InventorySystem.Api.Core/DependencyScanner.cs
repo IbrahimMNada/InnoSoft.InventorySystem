@@ -7,6 +7,7 @@ using InnoSoft.InventorySystem.Core;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Infrastructure;
 using InnoSoft.InventorySystem.Infrastructure.Commands;
+using InnoSoft.InventorySystem.Infrastructure.MediatR;
 using InnoSoft.InventorySystem.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore.Query;

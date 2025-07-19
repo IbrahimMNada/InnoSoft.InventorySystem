@@ -1,24 +1,21 @@
 ﻿using FluentValidation;
 using InnoSoft.InventorySystem.Application.Features.Products.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using InnoSoft.InventorySystem.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace InnoSoft.InventorySystem.Application.Features.Products.Validators
 {
     public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {
-        public UpdateProductCommandValidator()
+        public UpdateProductCommandValidator(IStringLocalizer<SharedResource> localizer)
         {
-            RuleFor(x => x.Id).NotEmpty();
-            RuleFor(x => x.Translations).NotEmpty();
-            RuleForEach(x => x.Translations).SetValidator(new ProductTranslationDtoValidator());
-            RuleFor(x => x.PricePerPiece).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.Quantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.AlertThresholdQuantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.CategoryId).NotEmpty();
+            _ = RuleFor(x => x.Id).NotEmpty();
+            _ = RuleFor(x => x.Translations).NotEmpty();
+            _ = RuleForEach(x => x.Translations).SetValidator(new ProductTranslationDtoValidator(localizer));
+            _ = RuleFor(x => x.PricePerPiece).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.Quantity).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.AlertThresholdQuantity).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.CategoryId).NotEmpty();
         }
     }
 }

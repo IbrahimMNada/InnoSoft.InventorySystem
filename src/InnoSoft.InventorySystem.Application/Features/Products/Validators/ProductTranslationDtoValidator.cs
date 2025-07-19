@@ -1,19 +1,17 @@
 ﻿using FluentValidation;
 using InnoSoft.InventorySystem.Application.Features.Products.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using InnoSoft.InventorySystem.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace InnoSoft.InventorySystem.Application.Features.Products.Validators
 {
     public class ProductTranslationDtoValidator : AbstractValidator<ProductTranslationDto>
     {
-        public ProductTranslationDtoValidator()
+        public ProductTranslationDtoValidator(IStringLocalizer<SharedResource> localizer)
         {
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Language).NotEmpty();
+            _ = RuleFor(x => x.Name).NotEmpty();
+            _ = RuleFor(x => x.Language).NotEmpty();
+            _ = RuleFor(x => x.Description).MaximumLength(70).WithMessage(localizer["MaximumLength"]);
         }
     }
 }

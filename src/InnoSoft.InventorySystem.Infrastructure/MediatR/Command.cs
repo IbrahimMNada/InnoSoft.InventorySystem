@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using InnoSoft.InventorySystem.Infrastructure.MediatR;
+using MediatR;
 using System;
 
 namespace InnoSoft.InventorySystem.Infrastructure.Commands

@@ -1,10 +1,5 @@
 ﻿using InnoSoft.InventorySystem.Core.Entities;
 using InnoSoft.InventorySystem.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Authentication
 {
@@ -17,8 +12,8 @@ namespace InnoSoft.InventorySystem.Application.Authentication
             _tokenService = tokenService;
         }
 
-        private List<User> Users = new List<User>
-        {
+        private readonly List<User> Users =
+        [
             new User
             {
                 Id = Guid.Parse("c63c0e6e-3b64-4d08-9f2b-4f3a41e9a7ef"),
@@ -33,18 +28,18 @@ namespace InnoSoft.InventorySystem.Application.Authentication
                 Password = "user123",
                 UserRole = Roles.EndUser,
             }
-        };
+        ];
 
 
         public AuthenticationResult Authenticate(string username, string password)
         {
-            var user = Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            User? user = Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             if (user == null)
             {
                 throw new DomainException("InvalidCredentials");
             }
-            
-            var token = _tokenService.GenerateToken(user);
+
+            string token = _tokenService.GenerateToken(user);
             return new AuthenticationResult() { UserName = user.Username, Token = token };
         }
     }

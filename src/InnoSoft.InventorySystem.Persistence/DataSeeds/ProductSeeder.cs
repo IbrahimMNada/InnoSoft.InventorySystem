@@ -1,24 +1,19 @@
 ﻿using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Core.Entities.Products;
-using InnoSoft.InventorySystem.Core.Entities.Categories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Persistence.DataSeeds
 {
-    public class ProductSeeder
+    public static class ProductSeeder
     {
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
-            using var scope = serviceProvider.CreateScope();
-            var repository = scope.ServiceProvider.GetRequiredService<IRepository<Product>>();
+            using IServiceScope scope = serviceProvider.CreateScope();
+            IRepository<Product> repository = scope.ServiceProvider.GetRequiredService<IRepository<Product>>();
 
             if (!repository.GetAll().Any())
             {
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("A1B2C3D4-E5F6-4719-BD51-08DDC5E14BD7"),
                     IsDeleted = false,
@@ -26,8 +21,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 50,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("5AD29664-0E8E-4F26-BD51-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -42,10 +37,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "أحدث هاتف ذكي رائد من أبل.",
             TranslationRootId = Guid.Parse("A1B2C3D4-E5F6-4719-BD51-08DDC5E14BD7")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("AEF25B3B-3FFA-4067-81CF-9AAC53CF7689"),
                     IsDeleted = false,
@@ -53,8 +48,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 200,
                     AlertThresholdQuantity = 55,
                     CategoryId = Guid.Parse("5AD29664-0E8E-4F26-BD51-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -69,10 +64,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "هاتف سامسونج الرائد.",
             TranslationRootId = Guid.Parse("AEF25B3B-3FFA-4067-81CF-9AAC53CF7689")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("C3E13D4E-4A7B-4347-9274-48432DC7766C"),
                     IsDeleted = false,
@@ -80,8 +75,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 3,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("E709710F-C033-4719-BD52-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -96,10 +91,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "حاسوب محمول عالي الأداء من ديل.",
             TranslationRootId = Guid.Parse("C3E13D4E-4A7B-4347-9274-48432DC7766C")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("2540A16D-82DA-4799-ADA2-43E44E0E712F"),
                     IsDeleted = false,
@@ -107,8 +102,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 50,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("E709710F-C033-4719-BD52-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -123,11 +118,11 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "حاسوب أبل الفاخر للمحترفين.",
             TranslationRootId = Guid.Parse("2540A16D-82DA-4799-ADA2-43E44E0E712F")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("0B839744-08E7-494A-BEE4-A9EA5D952E93"),
                     IsDeleted = false,
@@ -135,8 +130,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 66,
                     AlertThresholdQuantity = 100,
                     CategoryId = Guid.Parse("77921FEC-78DC-47C0-BD53-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -151,10 +146,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "جهاز لوحي خفيف من أبل.",
             TranslationRootId = Guid.Parse("0B839744-08E7-494A-BEE4-A9EA5D952E93")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("DE23F1A0-7D08-4F5F-A306-6E2FD974FED8"),
                     IsDeleted = false,
@@ -162,8 +157,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 50,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("77921FEC-78DC-47C0-BD53-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -178,10 +173,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "أحدث جهاز لوحي من سامسونج.",
             TranslationRootId = Guid.Parse("DE23F1A0-7D08-4F5F-A306-6E2FD974FED8")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("E4089068-84AF-4A2D-82BA-6311FCCCD9D5"),
                     IsDeleted = false,
@@ -189,8 +184,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 50,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("77921FEC-78DC-47C0-BD53-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -205,10 +200,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "جهاز مايكروسوفت 2 في 1.",
             TranslationRootId = Guid.Parse("E4089068-84AF-4A2D-82BA-6311FCCCD9D5")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("F27B4B7D-A1B6-47CE-882C-8B25DB80EBA8"),
                     IsDeleted = false,
@@ -216,8 +211,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 50,
                     AlertThresholdQuantity = 60,
                     CategoryId = Guid.Parse("05189D9B-F2C5-43E9-BD54-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -232,10 +227,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "فأرة لاسلكية عالية الدقة.",
             TranslationRootId = Guid.Parse("F27B4B7D-A1B6-47CE-882C-8B25DB80EBA8")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("A3C10332-C3C5-4356-81F1-91C6C5FF21E7"),
                     IsDeleted = false,
@@ -243,8 +238,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 7,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("05189D9B-F2C5-43E9-BD54-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -259,10 +254,10 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "ساعة ذكية مع تتبع اللياقة.",
             TranslationRootId = Guid.Parse("A3C10332-C3C5-4356-81F1-91C6C5FF21E7")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
 
-                await repository.Add(new Product
+                _ = await repository.Add(new Product
                 {
                     Id = Guid.Parse("1D4BDAF9-8C90-4BFC-B3DF-0FC2C66318A6"),
                     IsDeleted = false,
@@ -270,8 +265,8 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     Quantity = 150,
                     AlertThresholdQuantity = 5,
                     CategoryId = Guid.Parse("05189D9B-F2C5-43E9-BD54-08DDC5E14BD7"),
-                    Translations = new List<ProductTranslation>()
-    {
+                    Translations =
+    [
         new ProductTranslation
         {
             LanguageId = Guid.Parse("B6A7D1F6-3D23-4C5C-9A01-7F8E9B8B68E2"),
@@ -286,11 +281,11 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
             Description = "سماعات لاسلكية مانعة للضوضاء.",
             TranslationRootId = Guid.Parse("1D4BDAF9-8C90-4BFC-B3DF-0FC2C66318A6")
         }
-    }
-                });
+    ]
+                }).ConfigureAwait(false);
             }
 
-            await repository.UnitOfWork.SaveChangesAsync();
+            _ = await repository.UnitOfWork.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

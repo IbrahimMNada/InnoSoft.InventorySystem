@@ -1,7 +1,7 @@
-﻿namespace InnoSoft.InventorySystem.Infrastructure.Commands
+﻿namespace InnoSoft.InventorySystem.Infrastructure.MediatR
 {
     public interface ICommand
     {
-        
+
     }
 }

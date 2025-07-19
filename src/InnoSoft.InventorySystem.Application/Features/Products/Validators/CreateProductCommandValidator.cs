@@ -1,18 +1,20 @@
 using FluentValidation;
 using InnoSoft.InventorySystem.Application.Features.Products.Commands;
+using InnoSoft.InventorySystem.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace InnoSoft.InventorySystem.Application.Features.Products.Validators
 {
     public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
-        public CreateProductCommandValidator()
+        public CreateProductCommandValidator(IStringLocalizer<SharedResource> localizer)
         {
-            RuleFor(x => x.Translations).NotEmpty();
-            RuleForEach(x => x.Translations).SetValidator(new ProductTranslationDtoValidator());
-            RuleFor(x => x.PricePerPiece).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.Quantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.AlertThresholdQuantity).GreaterThanOrEqualTo(0);
-            RuleFor(x => x.CategoryId).NotEmpty();
+            _ = RuleFor(x => x.Translations).NotEmpty();
+            _ = RuleForEach(x => x.Translations).SetValidator(new ProductTranslationDtoValidator(localizer));
+            _ = RuleFor(x => x.PricePerPiece).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.Quantity).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.AlertThresholdQuantity).GreaterThanOrEqualTo(0);
+            _ = RuleFor(x => x.CategoryId).NotEmpty();
         }
     }
 }
