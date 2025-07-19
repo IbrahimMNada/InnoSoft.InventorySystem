@@ -1,5 +1,6 @@
 using ConsultationPlatformService.Extensions;
 using InnoSoft.InventorySystem.Api.Core;
+using InnoSoft.InventorySystem.Api.Core.BackgroundJobs;
 using InnoSoft.InventorySystem.Application;
 using InnoSoft.InventorySystem.Application.Authentication;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
@@ -62,6 +63,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddScoped<DbContextDependencies>();
 builder.Services.AddDbContext<DbContext, MainDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Application")));
 
+builder.Services.AddHostedService<NotifyLowStockOfProductsHostedService>();
 
 var jwtKey = builder.Configuration["JwtSettings:Key"];
 var jwtIssuer = builder.Configuration["JwtSettings:Issuer"];

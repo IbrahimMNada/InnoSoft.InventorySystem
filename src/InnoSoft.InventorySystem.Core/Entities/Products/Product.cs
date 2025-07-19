@@ -15,5 +15,6 @@ namespace InnoSoft.InventorySystem.Core.Entities.Products
         public double AlertThresholdQuantity { get; set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
+        public DateTime? LastLowStockWarningDate { get; set; }
     }
 }

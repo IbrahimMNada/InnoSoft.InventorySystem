@@ -9,6 +9,7 @@ using InnoSoft.InventorySystem.Core.Exceptions;
 using InnoSoft.InventorySystem.Infrastructure;
 using InnoSoft.InventorySystem.Persistence;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,12 @@ namespace InnoSoft.InventorySystem.Application.Features.Products.Handlers
             _mapper.Map(request, entity);
             await _repository.UnitOfWork.SaveChangesAsync(cancellationToken);
             await _hubContext.Clients.All.SendAsync("ProductUpdated", new { request = request, initator = _currentUser.UserId }, cancellationToken);
+
+            if (entity.Quantity <= entity.AlertThresholdQuantity)
+            {
+                await _hubContext.Clients.All.SendAsync("LowStockAlert", new { request = _mapper.Map<ProductNotificationDto>(entity), initator = _currentUser.UserId }, cancellationToken);
+            }
+
             return true;
         }
     }
