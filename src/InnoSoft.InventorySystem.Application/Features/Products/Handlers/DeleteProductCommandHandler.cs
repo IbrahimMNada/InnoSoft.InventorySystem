@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InnoSoft.InventorySystem.Application.Features.Categories.Commands;
+using InnoSoft.InventorySystem.Application.Features.Products.Commands;
 using InnoSoft.InventorySystem.Core.Abstractions;
 using InnoSoft.InventorySystem.Core.Entities.Categories;
 using InnoSoft.InventorySystem.Core.Entities.Products;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace InnoSoft.InventorySystem.Application.Features.Products.Handlers
 {
-    public class DeleteProductCommandHandler : ICommandHandler<DeleteCategoryCommand, bool>
+    public class DeleteProductCommandHandler : ICommandHandler<DeleteProductCommand, bool>
     {
         private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
@@ -24,7 +25,7 @@ namespace InnoSoft.InventorySystem.Application.Features.Products.Handlers
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var entity = await _repository.GetById(request.Id);
             if (entity == null)

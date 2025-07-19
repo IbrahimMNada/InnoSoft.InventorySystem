@@ -11,5 +11,6 @@ namespace InnoSoft.InventorySystem.Core.Abstractions
         public Guid UserId { get; }
         public string Username { get; }
         public Roles Role { get; }
+        public List<Permissions> AllowedPermissions { get; }
     }
 }
