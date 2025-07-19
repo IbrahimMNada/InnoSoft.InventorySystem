@@ -51,7 +51,7 @@ namespace InnoSoft.InventorySystem.Persistence.DataSeeds
                     IsDeleted = false,
                     PricePerPiece = 1499.99m,
                     Quantity = 30,
-                    AlertThresholdQuantity = 3,
+                    AlertThresholdQuantity =55,
                     CategoryId = Guid.Parse("E709710F-C033-4719-BD52-08DDC5E14BD7"), // Laptops
                     Translations = new List<ProductTranslation>()
                     {
