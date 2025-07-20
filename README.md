@@ -238,6 +238,9 @@ Authorization: Bearer your-jwt-token
 
 ### ** Comprehensive Testing Strategy**
 
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/93f48e3d-66cd-49ca-9311-04a67ecba9e8" />
+
+
 #### ** Unit Tests**
 - **32+ Test Methods** covering core entities
 - **MSTest Framework** with parallel execution
