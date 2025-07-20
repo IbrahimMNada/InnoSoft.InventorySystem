@@ -2,8 +2,6 @@
 
 [![.NET 9](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/9.0)
 [![Entity Framework Core](https://img.shields.io/badge/EF%20Core-9.0-green.svg)](https://docs.microsoft.com/en-us/ef/)
-[![Angular](https://img.shields.io/badge/Angular-Ready-red.svg)](https://angular.io/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A modern, scalable inventory management system built with **Clean Architecture**, **CQRS**, and **multi-language support**. Perfect for businesses needing real-time inventory tracking with enterprise-grade features.
 
