@@ -1,4 +1,4 @@
-# 🏪 InnoSoft Inventory Management System
+#  InnoSoft Inventory Management System
 
 [![.NET 9](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/9.0)
 [![Entity Framework Core](https://img.shields.io/badge/EF%20Core-9.0-green.svg)](https://docs.microsoft.com/en-us/ef/)
@@ -7,7 +7,7 @@
 
 A modern, scalable inventory management system built with **Clean Architecture**, **CQRS**, and **multi-language support**. Perfect for businesses needing real-time inventory tracking with enterprise-grade features.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
@@ -31,7 +31,9 @@ A modern, scalable inventory management system built with **Clean Architecture**
      }
    }
    ```
-   ##ERD Digram 
+**ERD:**
+   <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/9bd3c639-ce4a-44c4-88a8-17d45d6da3e5" />
+
 
 3. **Run the Application**
    ```bash
